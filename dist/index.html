@@ -3,38 +3,18 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Getting Started: Inrupt JavaScript Client Libraries</title>
+    <title>Auto add oidc issuer registration token</title>
     <script defer src="./index.js" ></script>
-    <link rel="stylesheet" href="my-demo.css" />
   </head>
   <body>
     
-    <header>
-        <h2>Getting Started !!</h2>
-    </header>
-    <section id="login" class="panel">
-        <div class="row">
-          <label id="labelLogin" for="btnLogin">1. Click the button to log in: </label>
-          <button name="btnLogin" id="btnLogin">Login</button> 
-          <p id="labelStatus"></p>
-        </div>
-    </section>
+    Token: 
+      <input type="text" id="tokenValue" value="d34db33f"></textarea>
+      <br>
+    OIDC provider:
+      <input type="text" id="oidcIssuer" value="https://solidcommunity.net"></textarea>
+      <br>
+    <button name="btnLogin" id="btnLogin">Add token to WebId</button>
 
-    <div id="write" class="panel" >
-
-      <div class="row">
-        The token will be added at:
-        <input type="url" id="WebIdURL" name="WebIdURL"  size="50" pattern="https://.*" >
-
-        <label id="listLabel" for="token">Enter OIDC token: </label>
-        <textarea id="token" name="token" rows="5" cols="42" ></textarea>
-          <button name="btnAddToken" id="btnAddToken">Add token</button>
-<span id="labelCreateStatus"></span>
-      </div>
-      <div class="row"></div>
-        <label id="labelRetrieved" for="savedtokens">Retrieved:</label>
-        <textarea id="savedtokens" name="savedtokens" rows="5" cols="42" readonly></textarea>
-      </div>
-    </div>
   </body>
 </html>
