@@ -37,7 +37,6 @@ async function finishLogin() {
     if (session.info.isLoggedIn) {
       let webIdUrl = session.info.webId;
       document.getElementById("labelStatus").textContent = `Logged in with WebID ${session.info.webId}`;
-      document.getElementById("labelStatus").setAttribute("style", "color:blue;");
 
     }
 
@@ -49,9 +48,9 @@ async function finishLogin() {
 
 finishLogin();
 
-async function addToken(token_value, podUrl) {
-  
-  const profileCardUrl = `${podUrl}/profile/card/`;
+async function addToken(token_value, webIdUrl) {
+
+  const profileCardUrl = `${webIdUrl}`;
   const OIDC_SCHEMA ="http://www.w3.org/ns/solid/terms#oidcIssuerRegistrationToken"
   let myProfileCard ;
  
@@ -62,7 +61,6 @@ async function addToken(token_value, podUrl) {
       console.error(error.message);
   }
 
-  const webIdUrl = myProfileCard.internal_resourceInfo.sourceIri + '#me'
   let card = getThing(myProfileCard, webIdUrl)
   card = addStringNoLocale(card, OIDC_SCHEMA, token_value);
   myProfileCard = setThing(myProfileCard, card);
@@ -89,6 +87,9 @@ buttonAdd.onclick = function() {
     if (session.info.isLoggedIn) {
       let token = document.getElementById('tokenValue').value
       addToken(token, session.info.webId );
+      document.getElementById("sendStatus").textContent = `token sent`;
+    }else{
+      document.getElementById("labelStatus").textContent = ` 👈 Please login first`;
     }
 };
 
