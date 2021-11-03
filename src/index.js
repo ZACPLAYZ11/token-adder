@@ -15,10 +15,10 @@ import {
 } from "@inrupt/solid-client-authn-browser";
 
 const buttonLogin = document.querySelector("#btnLogin");
+const buttonAdd = document.querySelector("#btnAdd");
 
 // 1a. Start Login Process. Call login() function.
-function startLogin() {
-  let oidcIssuer = document.getElementById('oidcIssuer').value
+function startLogin(oidcIssuer) {
   return login({
     // oidcIssuer: "https://broker.pod.inrupt.com",
     oidcIssuer: oidcIssuer,
@@ -35,10 +35,10 @@ async function finishLogin() {
     await handleIncomingRedirect();
     const session = getDefaultSession();
     if (session.info.isLoggedIn) {
-      console.log( session)
       let webIdUrl = session.info.webId;
-      // console.log("webid: " + webIdUrl)
-      // addToken(token, webIdUrl);
+      document.getElementById("labelStatus").textContent = `Logged in with WebID ${session.info.webId}`;
+      document.getElementById("labelStatus").setAttribute("style", "color:blue;");
+
     }
 
 }
@@ -51,9 +51,7 @@ finishLogin();
 
 async function addToken(token_value, podUrl) {
   
-  console.log("podUrl: " + podUrl)
   const profileCardUrl = `${podUrl}/profile/card/`;
-  console.log("pc: " + profileCardUrl)
   const OIDC_SCHEMA ="http://www.w3.org/ns/solid/terms#oidcIssuerRegistrationToken"
   let myProfileCard ;
  
@@ -71,7 +69,6 @@ async function addToken(token_value, podUrl) {
 
   try {
     // Save the SolidDataset
-    console.log("wtf? " + profileCardUrl)
     await saveSolidDatasetAt(
       profileCardUrl,
       myProfileCard,
@@ -83,7 +80,16 @@ async function addToken(token_value, podUrl) {
 }
 
 buttonLogin.onclick = function() {
-  startLogin();
+  let oidcIssuer = document.getElementById('oidcIssuer').value
+  startLogin(oidcIssuer);
+};
+
+buttonAdd.onclick = function() {
+    const session = getDefaultSession();
+    if (session.info.isLoggedIn) {
+      let token = document.getElementById('tokenValue').value
+      addToken(token, session.info.webId );
+    }
 };
 
 
