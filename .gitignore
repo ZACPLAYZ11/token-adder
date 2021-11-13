@@ -1,7 +1,11 @@
 node_modules
+<<<<<<< HEAD
 dist/_ed1b-_d17e.index.js
 dist/index.js
 dist/vendors-node_modules_n3_src_index_js.index.js
 package-lock.json
 ressource.md
 FORK.md
+=======
+package-lock.json
+>>>>>>> a0c4a4a350c1c334cc13c540e8a27d2315cc8e2f
