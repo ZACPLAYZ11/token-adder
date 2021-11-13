@@ -17,6 +17,12 @@ import {
 const buttonLogin = document.querySelector("#btnLogin");
 const buttonAdd = document.querySelector("#btnAdd");
 
+const buttonAlert = document.querySelector("#btnAlert");
+buttonAlert.onclick = function() {
+  alert("WORKING")
+  console.log("WORKING")
+}
+
 // 1a. Start Login Process. Call login() function.
 function startLogin(oidcIssuer) {
   return login({

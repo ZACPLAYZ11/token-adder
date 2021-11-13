@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
+    "build": "webpack --config=webpack.config.prod.js",
     "start": "webpack serve --open"
   },
   "keywords": [],
@@ -15,7 +15,9 @@
     "@inrupt/solid-client": "^1.14.0",
     "@inrupt/solid-client-authn-browser": "^1.11.2",
     "@inrupt/vocab-common-rdf": "^1.0.3",
-    "buffer": "^6.0.3"
+    "buffer": "^6.0.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "html-webpack-plugin": "^5.5.0"
   },
   "devDependencies": {
     "css-loader": "^6.5.0",
